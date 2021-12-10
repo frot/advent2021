@@ -16,11 +16,8 @@ for line in fileinput.input():
         i = '([{<'.find(c)
         if i >= 0:
             expect.append(')]}>'[i])
-        elif expect:
-            if c != expect.pop():
-                score += points[c]
-                break
-        else:
+        elif c != expect.pop():
+            score += points[c]
             break
 
 print(score)

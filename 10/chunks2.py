@@ -16,19 +16,13 @@ for line in fileinput.input():
         i = '([{<'.find(c)
         if i >= 0:
             expect.append(')]}>'[i])
-        elif expect:
-            if c != expect.pop():
-                expect = []
-                break
-        else:
+        elif c != expect.pop():
             break
-
-    if expect:
+    else:
         score = 0
-        expect.reverse()
-        for c in expect:
+        while expect:
             score *= 5
-            score += points[c]
+            score += points[expect.pop()]
         scores.append(score)
 
 scores.sort()
